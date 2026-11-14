@@ -1,0 +1,15 @@
+{
+  "name": "kodialabs",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@fontsource/inter-tight": "^5.0.0",
+    "astro": "^5.0.0",
+    "jspdf": "^2.5.2"
+  }
+}
