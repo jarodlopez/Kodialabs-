@@ -1,0 +1,57 @@
+---
+import Base from "../layouts/Base.astro";
+import { ORDER, S, wa } from "../data.js";
+
+export function getStaticPaths() {
+  return ORDER.map((k) => ({ params: { seg: k } }));
+}
+const { seg } = Astro.params;
+const s = S[seg];
+---
+<Base title={`${s.label} | kodialabs`} desc={s.lead} seg={seg}>
+  <section class="hero">
+    <div class="wrap">
+      <a class="back" href="/">← Todos los servicios</a>
+      <h1>{s.h}</h1>
+      <p class="lead" style="margin-top:24px">{s.lead}</p>
+      <div class="cta-row"><a class="btn" href={`/diagnostico/${seg}`}>Encuentra tu paquete ideal</a></div>
+    </div>
+  </section>
+
+  <section style="padding-top:8px">
+    <div class="wrap">
+      <h2>Paquetes para {s.label.toLowerCase()}</h2>
+      <p class="note">Cada paquete incluye todo lo del anterior y suma más. Precios de ejemplo.</p>
+      <div class="cards">
+        {s.pk.map((x, i) => (
+          <article class={`card${x.feat ? " feat" : ""}`}>
+            <h3>{x.n}</h3>
+            <div class="price">${x.p}<small>{x.u}</small></div>
+            <span class="delta">{i ? `+$${x.p - s.pk[i - 1].p} vs. ${s.pk[i - 1].n.toLowerCase()}` : "Para empezar"}</span>
+            <p class="sub">{i ? `Todo lo de ${s.pk[i - 1].n.toLowerCase()}, y además:` : "Incluye:"}</p>
+            <ul>{(x.items || x.extra).map((t) => <li class={x.extra ? "new" : undefined}>{t}</li>)}</ul>
+            <a class={`btn${x.feat ? "" : " line"}`} href={wa(`Hola kodialabs, quiero el paquete ${x.n} para ${s.label.toLowerCase()}`)}>Reservar {x.n.toLowerCase()}</a>
+          </article>
+        ))}
+      </div>
+      <ol class="steps">
+        <li><b>Cuéntanos tu caso</b><span>Responde unas preguntas rápidas.</span></li>
+        <li><b>Recibe tu oferta</b><span>Un paquete pensado para ti.</span></li>
+        <li><b>Sesión</b><span>Te guiamos para verte natural.</span></li>
+        <li><b>Recibe tu resultado</b><span>Entrega lista y a tiempo.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="glow pulse" style="width:700px;height:420px;left:50%;bottom:-250px;transform:translateX(-50%);opacity:.8"></div>
+    <div class="wrap">
+      <h2>¿Cuál te conviene?</h2>
+      <p>Cuéntanos tu caso en 4 preguntas y te recomendamos el paquete ideal.</p>
+      <div class="cta-row">
+        <a class="btn" href={`/diagnostico/${seg}`}>Encuentra tu paquete</a>
+        <a class="btn line" href={wa(`Hola kodialabs, quiero cotizar ${s.label.toLowerCase()}`)}>Escribir por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</Base>

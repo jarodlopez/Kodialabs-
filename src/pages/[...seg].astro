@@ -1,0 +1,18 @@
+---
+import Base from "../../layouts/Base.astro";
+import { ORDER } from "../../data.js";
+
+export function getStaticPaths() {
+  return [{ params: { seg: undefined } }, ...ORDER.map((k) => ({ params: { seg: k } }))];
+}
+const { seg } = Astro.params;
+---
+<Base title="Tu paquete ideal | kodialabs" seg={seg || ""} sticky={false}>
+  <section class="hero">
+    <div class="wrap qwrap" id="quiz" data-seg={seg || ""}></div>
+  </section>
+  <script>
+    import { initQuiz } from "../../quiz.js";
+    initQuiz(document.getElementById("quiz"));
+  </script>
+</Base>

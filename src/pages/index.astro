@@ -1,0 +1,84 @@
+---
+import Base from "../layouts/Base.astro";
+import { ORDER, S, wa } from "../data.js";
+---
+<Base title="kodialabs | Fotografía, video y tecnología">
+  <section class="hero">
+    <div class="wrap">
+      <h1>Guardamos<br />lo que importa.</h1>
+      <p class="lead" style="margin-top:24px">kodialabs es un laboratorio de fotografía, video y tecnología para personas, parejas, eventos y negocios.</p>
+      <div class="cta-row">
+        <a class="btn" href="/diagnostico">Encuentra tu paquete ideal</a>
+        <a class="btn line" href="#servicios">Ver servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" style="padding-top:20px">
+    <div class="wrap">
+      <h2>¿Qué necesitas hoy?</h2>
+      <div class="tiles">
+        {ORDER.map((k) => (
+          <a class={`tile ${S[k].tile}`} href={`/${k}`}>
+            <div><h3>{S[k].label}</h3><p>{S[k].short}</p></div>
+            <div class="go"><span>Desde ${S[k].pk[0].p}</span><span aria-hidden="true">→</span></div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap story">
+      <div>
+        <h2>Nuestra historia</h2>
+        <p>Escribe aquí cómo nació kodialabs: quién lo fundó, por qué empezaron y qué los diferencia. Una historia real, en dos o tres frases, genera más confianza que cualquier promesa.</p>
+        <p>Ya sea una boda, un retrato o una campaña, creemos que una buena foto no se improvisa: se planea, se dirige y se entrega a tiempo. Y como una buena imagen necesita dónde vivir, también construimos landing pages, tiendas online, catálogos web y herramientas como CRM para dar seguimiento a tus clientes.</p>
+      </div>
+      <div class="pill">
+        <div><b>Te guiamos</b><span>No necesitas saber posar ni qué pedir.</span></div>
+        <div><b>Fecha de entrega acordada</b><span>Lo dejamos por escrito antes de empezar.</span></div>
+        <div><b>Precio cerrado</b><span>Sabes cuánto pagas antes de reservar.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="band">
+        <div><h2>¿No sabes cuál elegir?</h2><p>Responde 4 preguntas y te armamos la oferta que encaja con tu situación. Toma menos de un minuto.</p></div>
+        <a class="btn" href="/diagnostico">Empezar ahora</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="quote">“Entregaron antes de lo prometido y nos sentimos acompañados todo el tiempo.”<small>Nombre del cliente, tipo de sesión</small></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Preguntas frecuentes</h2>
+      <div style="margin-top:28px">
+        <details><summary>¿Cómo reservo y cómo pago?</summary><p>Elige tu paquete, te escribimos para confirmar fecha y reservas con un anticipo. El resto se paga el día de la sesión. (Texto de ejemplo.)</p></details>
+        <details><summary>¿Cuánto tardan en entregar?</summary><p>Depende del paquete y lo acordamos por escrito antes de la sesión. (Texto de ejemplo.)</p></details>
+        <details><summary>¿Y si no me convencen las fotos?</summary><p>Incluimos una ronda de ajustes de edición para que quedes conforme. (Texto de ejemplo.)</p></details>
+        <details><summary>¿Puedo cambiar de paquete después?</summary><p>Sí, puedes subir de paquete hasta antes de la sesión pagando solo la diferencia. (Texto de ejemplo.)</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="glow pulse" style="width:700px;height:420px;left:50%;bottom:-250px;transform:translateX(-50%);opacity:.8"></div>
+    <div class="wrap">
+      <h2>Cuéntanos qué necesitas</h2>
+      <p>Te respondemos en menos de 24 horas con una oferta pensada para ti.</p>
+      <div class="cta-row">
+        <a class="btn" href="/diagnostico">Encuentra tu paquete</a>
+        <a class="btn line" href={wa("Hola kodialabs, quiero info")}>Escribir por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</Base>
