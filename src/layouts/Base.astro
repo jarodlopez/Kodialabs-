@@ -20,8 +20,10 @@ const msg = "Hola kodialabs, quiero info" + (seg && S[seg] ? " de " + S[seg].lab
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23E8541A'/%3E%3C/svg%3E" />
 </head>
 <body class={sticky ? "hasst" : ""}>
-  <div class="glow pulse" style="width:620px;height:620px;left:-220px;top:60px;opacity:.7"></div>
-  <div class="glow" style="width:480px;height:480px;right:-200px;top:520px;opacity:.35"></div>
+  <div class="bg" aria-hidden="true">
+    <div class="glow pulse" style="width:620px;height:620px;left:-220px;top:60px;opacity:.7"></div>
+    <div class="glow" style="width:480px;height:480px;right:-200px;top:520px;opacity:.35"></div>
+  </div>
   <div class="wrap">
     <nav>
       <a class="logo" href="/"><b></b>kodialabs</a>
@@ -41,9 +43,11 @@ const msg = "Hola kodialabs, quiero info" + (seg && S[seg] ? " de " + S[seg].lab
 
 <style is:global>
 :root{--bg:#0E0705;--line:#35221A;--ink:#F6EFEA;--muted:#A89A92;--orange:#E8541A;--orange2:#FF8A3D;color-scheme:dark}
-html{background:var(--bg)}
+html{background:var(--bg);-webkit-text-size-adjust:100%}
 *,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.5 "Inter Tight","Helvetica Neue",Arial,sans-serif;overflow-x:hidden;padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.5 "Inter Tight","Helvetica Neue",Arial,sans-serif;overflow-x:clip;position:relative;padding-top:env(safe-area-inset-top,0px)}
+.bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.final .glow{left:50%!important;translate:-50% 0;transform:none!important}
 body.hasst{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
 h1,h2,h3,p{margin:0}
 h1,h2{font-weight:400;text-transform:uppercase;letter-spacing:-.04em;line-height:.92}
