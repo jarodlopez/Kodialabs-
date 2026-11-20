@@ -3,7 +3,11 @@ export const WA = "https://wa.me/0000000000";
 // Opcional: URL que recibe cada cotización completada (Zapier, Make, Google Apps Script, etc.)
 export const LEAD_URL = "";
 export const WHEN = ["En menos de 2 semanas", "En 1 a 2 meses", "Más adelante", "Solo estoy cotizando"];
-export const ORDER = ["empresas", "personas", "bodas", "eventos", "digital"];
+// Bodas y eventos ocultos por ahora (sin portafolio, trabajas solo). Para reactivarlos: ["empresas", "personas", "bodas", "eventos", "digital"]
+export const ORDER = ["empresas", "personas", "digital"];
+// Ajustes automáticos de precio en la cotización
+export const RUSH = { pct: 0.15, min: 5 };      // reserva en menos de 2 semanas: +15%, mínimo $5
+export const EARLY = { pct: 0.10, minPrice: 85 }; // "más adelante": -10%, solo en paquetes de $85 o más
 export const wa = (t) => WA + "?text=" + encodeURIComponent(t);
 
 export const S = {
@@ -20,9 +24,9 @@ export const S = {
     ],
     sc: ["Pocos productos o una persona", "Un catálogo o varias personas", "Una campaña completa", "No lo sé todavía"],
     pk: [
-      { n: "Esencial", p: 390, u: "medio día", items: ["20 fotos de producto o equipo", "Fondo limpio y retoque", "Licencia para redes y web", "Entrega en 4 días"] },
-      { n: "Marca", p: 890, u: "1 día", feat: 1, extra: ["20 fotos más (40 en total)", "Fotos lifestyle en locación", "Retratos del equipo", "Reel de 30–60 s"] },
-      { n: "Campaña", p: 1790, u: "2 días", extra: ["30 fotos más (70 en total)", "Video promocional de 60–90 s", "3 reels adicionales", "Dirección creativa y entrega prioritaria"] }
+      { n: "Start", p: 60, u: "1 h", items: ["10 fotos de producto o marca", "Fondo limpio y retoque básico", "Licencia para redes y web", "Entrega en 3 días"] },
+      { n: "Marca", p: 140, u: "2–3 h", feat: 1, extra: ["10 fotos más (20 en total)", "Lista de tomas según tu objetivo", "Fotos lifestyle en locación", "1 reel de 15–30 s"] },
+      { n: "Campaña", p: 280, u: "medio día", extra: ["15 fotos más (35 en total)", "2 reels más (3 en total)", "Dirección creativa del contenido", "Entrega prioritaria"] }
     ]
   },
   personas: {
@@ -38,9 +42,9 @@ export const S = {
     ],
     sc: ["Solo yo", "Varias personas o varios looks", "Producción completa con video", "No lo sé todavía"],
     pk: [
-      { n: "Mini retrato", p: 99, u: "30 min", items: ["10 fotos editadas", "1 locación", "Entrega en 3 días"] },
-      { n: "Sesión completa", p: 199, u: "1 h 30 min", feat: 1, extra: ["15 fotos más (25 en total)", "1 locación más", "1 cambio de outfit", "Galería privada online"] },
-      { n: "Experiencia", p: 349, u: "3 horas", extra: ["25 fotos más (50 en total)", "Reel para redes", "Asesoría de estilo", "Álbum impreso de 20 páginas"] }
+      { n: "Mini retrato", p: 30, u: "1 h", items: ["10 fotos editadas", "1 locación", "Entrega en 3 días"] },
+      { n: "Sesión estándar", p: 50, u: "1 h 30 min", feat: 1, extra: ["10 fotos más (20 en total)", "30 min más de sesión", "1 cambio de outfit", "Galería privada online"] },
+      { n: "Sesión completa", p: 85, u: "2 h", extra: ["15 fotos más (35 en total)", "1 locación más (2 en total)", "Reel de 15–30 s para redes", "Asesoría de estilo"] }
     ]
   },
   bodas: {
@@ -101,8 +105,8 @@ export const S = {
 
 // Extras sugeridos por preocupación: [nombre, precio, último paquete donde aún aplica (0,1,2; 9 = siempre)]
 export const ADD = {
-  empresas: [["Retoque avanzado", 80, 9], ["Coordinación completa", 90, 9], ["Entrega exprés 48 h", 120, 9], ["Lista de tomas", 60, 9]],
-  personas: [null, ["Retoque premium", 30, 9], ["Asesoría de estilo", 40, 1], ["Búsqueda de locación", 30, 9]],
+  empresas: [["Retoque avanzado", 15, 9], ["Coordinación completa", 20, 1], ["Entrega exprés 48 h", 10, 1], ["Lista de tomas", 10, 0]],
+  personas: [null, ["Retoque premium", 10, 9], ["Asesoría de estilo", 10, 1], ["Búsqueda de locación", 10, 9]],
   bodas: [["Segundo fotógrafo", 250, 0], ["Entrega prioritaria", 150, 1], null, ["Sesión de pareja previa", 120, 0]],
   eventos: [["Galería compartida", 60, 0], ["Entrega en 48 h", 90, 0], null, ["Reel del evento", 180, 1]],
   digital: [["Recordatorios automáticos", 150, 1], ["Auditoría de conversión", 120, 9], ["Migración de tus datos", 200, 1], ["Dominio y hosting (1er año)", 60, 9]]
