@@ -1,5 +1,5 @@
-// EDITA AQUÍ: número de WhatsApp (solo dígitos con código de país), precios y paquetes.
-export const WA = "https://wa.me/0000000000";
+// EDITA AQUÍ: número de WhatsApp (solo digitos con código de país), precios y paquetes.
+export const WA = "https://wa.me/50584016969";
 // Opcional: URL que recibe cada cotización completada (Zapier, Make, Google Apps Script, etc.)
 export const LEAD_URL = "";
 export const WHEN = ["En menos de 2 semanas", "En 1 a 2 meses", "Más adelante", "Solo estoy cotizando"];
