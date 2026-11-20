@@ -21,7 +21,7 @@ const s = S[seg];
   <section style="padding-top:8px">
     <div class="wrap">
       <h2>Paquetes para {s.label.toLowerCase()}</h2>
-      <p class="note">Cada paquete incluye todo lo del anterior y suma más. Precios de ejemplo.</p>
+      <p class="note">Precios en dólares (USD). Cada paquete incluye todo lo del anterior y suma más.</p>
       <div class="cards">
         {s.pk.map((x, i) => (
           <article class={`card${x.feat ? " feat" : ""}`}>
@@ -44,7 +44,7 @@ const s = S[seg];
   </section>
 
   <section class="final">
-    <div class="glow pulse" style="width:700px;height:420px;left:50%;bottom:-250px;transform:translateX(-50%);opacity:.8"></div>
+    <div class="glow lime pulse" style="width:700px;height:420px;left:50%;bottom:-250px;transform:translateX(-50%);opacity:.7"></div>
     <div class="wrap">
       <h2>¿Cuál te conviene?</h2>
       <p>Cuéntanos tu caso en 4 preguntas y te recomendamos el paquete ideal.</p>
