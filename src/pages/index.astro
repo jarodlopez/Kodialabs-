@@ -1,9 +1,13 @@
 ---
 import Base from "../layouts/Base.astro";
 import { ORDER, S, wa } from "../data.js";
+import { foto, galeria } from "../fotos.js";
+const hero = foto("hero");
+const trabajos = galeria();
 ---
 <Base title="kodialabs | Fotografía, video y tecnología">
-  <section class="hero home">
+  <section class={`hero home${hero ? " has-photo" : ""}`}>
+    {hero && <img class="hero-img" src={hero} alt="" fetchpriority="high" />}
     <div class="wrap">
       <h1>Guardamos<br />lo que importa<i class="sp" aria-hidden="true"></i></h1>
       <p class="lead" style="margin-top:24px">kodialabs es un laboratorio de fotografía, video y tecnología en Managua para personas y negocios.</p>
@@ -18,15 +22,30 @@ import { ORDER, S, wa } from "../data.js";
     <div class="wrap">
       <h2>¿Qué necesitas hoy?</h2>
       <div class="tiles">
-        {ORDER.map((k) => (
-          <a class={`tile ${S[k].tile}`} href={`/${k}`}>
-            <div><h3>{S[k].label}</h3><p>{S[k].short}</p></div>
-            <div class="go"><span>Desde ${S[k].pk[0].p}</span><span aria-hidden="true">→</span></div>
-          </a>
-        ))}
+        {ORDER.map((k) => {
+          const img = foto(k);
+          return (
+            <a class={`tile ${S[k].tile}${img ? " has-img" : ""}`} href={`/${k}`}>
+              {img && <img class="tile-img" src={img} alt="" loading="lazy" decoding="async" />}
+              <div><h3>{S[k].label}</h3><p>{S[k].short}</p></div>
+              <div class="go"><span>Desde ${S[k].pk[0].p}</span><span aria-hidden="true">→</span></div>
+            </a>
+          );
+        })}
       </div>
     </div>
   </section>
+
+  {trabajos.length > 0 && (
+    <section style="padding-top:0">
+      <div class="wrap">
+        <h2>Trabajo reciente</h2>
+        <div class="gallery">
+          {trabajos.map((f) => <img src={f} alt="Trabajo de kodialabs" loading="lazy" decoding="async" />)}
+        </div>
+      </div>
+    </section>
+  )}
 
   <section>
     <div class="wrap story">

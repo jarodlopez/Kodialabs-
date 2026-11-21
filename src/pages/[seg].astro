@@ -1,12 +1,14 @@
 ---
 import Base from "../layouts/Base.astro";
 import { ORDER, S, wa } from "../data.js";
+import { foto } from "../fotos.js";
 
 export function getStaticPaths() {
   return ORDER.map((k) => ({ params: { seg: k } }));
 }
 const { seg } = Astro.params;
 const s = S[seg];
+const img = foto(seg);
 ---
 <Base title={`${s.label} | kodialabs`} desc={s.lead} seg={seg}>
   <section class="hero">
@@ -15,6 +17,7 @@ const s = S[seg];
       <h1>{s.h}</h1>
       <p class="lead" style="margin-top:24px">{s.lead}</p>
       <div class="cta-row"><a class="btn" href={`/diagnostico/${seg}`}>Encuentra tu paquete ideal</a></div>
+      {img && <img class="seg-img" src={img} alt={`Trabajo de kodialabs: ${s.label}`} loading="lazy" decoding="async" />}
     </div>
   </section>
 
