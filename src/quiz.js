@@ -14,7 +14,13 @@ export function result(Q) {
   let ad = ADD[Q.seg][a.pain];
   if (ad && i > ad[2]) ad = null;
   let adj = 0, al = "";
-  if (a.when === 0) { adj = Math.max(RUSH.min, Math.round(x.p * RUSH.pct)); al = "Prioridad de agenda (menos de 2 semanas)"; }
+  if (a.when === 0) {
+    adj = Math.max(RUSH.min, Math.round(x.p * RUSH.pct)); al = "Prioridad de agenda (menos de 2 semanas)";
+    // La urgencia nunca debe dejar el total igual o por encima del paquete siguiente
+    const nx = s.pk[i + 1];
+    if (nx) adj = Math.max(0, Math.min(adj, nx.p - 1 - x.p - (ad ? ad[1] : 0)));
+    if (!adj) al = "";
+  }
   if (a.when === 2 && x.p >= EARLY.minPrice) { adj = -Math.round(x.p * EARLY.pct); al = "Descuento por reservar con anticipación"; }
   const tot = x.p + (ad ? ad[1] : 0) + adj;
   return { s, a, i, x, ad, adj, al, tot, seg: Q.seg };
@@ -53,9 +59,11 @@ export function pdf(J, R) {
   y += 12; ens(26); tx("LO QUE NOS CONTASTE", 15, 8, G, 1);
   y += 6; tx(s.pain[a.pain][0], 15, 11, K, 1);
   d.splitTextToSize("Cómo lo resolvemos: " + s.pain[a.pain][1], 180).forEach((l) => { y += 6; ens(7); tx(l, 15, 11, T, 0); });
-  y += 14; ens(26); d.setFillColor(244, 244, 242); d.roundedRect(15, y - 5, W - 30, 22, 2, 2, "F");
+  y += 14; ens(36); d.setFillColor(244, 244, 242); d.roundedRect(15, y - 5, W - 30, 33, 2, 2, "F");
   y += 2; tx("Condiciones", 20, 10, K, 1);
   y += 6; tx("Cotización válida por 7 días. La fecha se reserva con un anticipo del 50%.", 20, 9.5, [70, 70, 70], 0);
+  y += 5.5; tx("Pago en dólares o en córdobas al tipo de cambio oficial del BCN del día.", 20, 9.5, [70, 70, 70], 0);
+  y += 5.5; tx("No incluye viáticos fuera de Managua.", 20, 9.5, [70, 70, 70], 0);
   y += 5.5; tx("Para confirmar, comparte tu número de orden por WhatsApp.", 20, 9.5, [70, 70, 70], 0);
   d.setPage(d.getNumberOfPages()); y = 285;
   tx("kodialabs · hola@kodialabs.com · @kodialabs", W / 2, 9, G, 0, { align: "center" });

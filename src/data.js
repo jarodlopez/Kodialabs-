@@ -1,13 +1,13 @@
-// EDITA AQUÍ: número de WhatsApp (solo digitos con código de país), precios y paquetes.
-export const WA = "https://wa.me/50584016969";
+// EDITA AQUÍ: número de WhatsApp (solo dígitos con código de país), precios y paquetes.
+export const WA = "https://wa.me/0000000000";
 // Opcional: URL que recibe cada cotización completada (Zapier, Make, Google Apps Script, etc.)
 export const LEAD_URL = "";
 export const WHEN = ["En menos de 2 semanas", "En 1 a 2 meses", "Más adelante", "Solo estoy cotizando"];
 // Bodas y eventos ocultos por ahora (sin portafolio, trabajas solo). Para reactivarlos: ["empresas", "personas", "bodas", "eventos", "digital"]
 export const ORDER = ["empresas", "personas", "digital"];
 // Ajustes automáticos de precio en la cotización
-export const RUSH = { pct: 0.15, min: 5 };      // reserva en menos de 2 semanas: +15%, mínimo $5
-export const EARLY = { pct: 0.10, minPrice: 85 }; // "más adelante": -10%, solo en paquetes de $85 o más
+export const RUSH = { pct: 0.15, min: 10 };      // reserva en menos de 2 semanas: +15%, mínimo $10
+export const EARLY = { pct: 0.10, minPrice: 100 }; // "más adelante": -10%, solo en paquetes de $100 o más
 export const wa = (t) => WA + "?text=" + encodeURIComponent(t);
 
 export const S = {
@@ -24,9 +24,9 @@ export const S = {
     ],
     sc: ["Pocos productos o una persona", "Un catálogo o varias personas", "Una campaña completa", "No lo sé todavía"],
     pk: [
-      { n: "Start", p: 60, u: "1 h", items: ["10 fotos de producto o marca", "Fondo limpio y retoque básico", "Licencia para redes y web", "Entrega en 3 días"] },
-      { n: "Marca", p: 140, u: "2–3 h", feat: 1, extra: ["10 fotos más (20 en total)", "Lista de tomas según tu objetivo", "Fotos lifestyle en locación", "1 reel de 15–30 s"] },
-      { n: "Campaña", p: 280, u: "medio día", extra: ["15 fotos más (35 en total)", "2 reels más (3 en total)", "Dirección creativa del contenido", "Entrega prioritaria"] }
+      { n: "Start", p: 75, u: "1 h", items: ["10 fotos de producto o marca", "Fondo limpio y retoque básico", "Licencia para redes y web", "Entrega en 3 días"] },
+      { n: "Marca", p: 165, u: "2–3 h", feat: 1, extra: ["10 fotos más (20 en total)", "Lista de tomas según tu objetivo", "Fotos lifestyle en locación", "1 reel de 15–30 s"] },
+      { n: "Campaña", p: 320, u: "medio día", extra: ["15 fotos más (35 en total)", "2 reels más (3 en total)", "Dirección creativa del contenido", "1 ronda de cambios en el video", "Entrega prioritaria"] }
     ]
   },
   personas: {
@@ -42,9 +42,9 @@ export const S = {
     ],
     sc: ["Solo yo", "Varias personas o varios looks", "Producción completa con video", "No lo sé todavía"],
     pk: [
-      { n: "Mini retrato", p: 30, u: "1 h", items: ["10 fotos editadas", "1 locación", "Entrega en 3 días"] },
-      { n: "Sesión estándar", p: 50, u: "1 h 30 min", feat: 1, extra: ["10 fotos más (20 en total)", "30 min más de sesión", "1 cambio de outfit", "Galería privada online"] },
-      { n: "Sesión completa", p: 85, u: "2 h", extra: ["15 fotos más (35 en total)", "1 locación más (2 en total)", "Reel de 15–30 s para redes", "Asesoría de estilo"] }
+      { n: "Mini retrato", p: 40, u: "45 min", items: ["10 fotos editadas", "1 locación", "Entrega en 3 días"] },
+      { n: "Sesión estándar", p: 65, u: "1 h 30 min", feat: 1, extra: ["10 fotos más (20 en total)", "30 min más de sesión", "1 cambio de outfit", "Galería privada online"] },
+      { n: "Sesión completa", p: 110, u: "2 h", extra: ["15 fotos más (35 en total)", "1 locación más (2 en total)", "Reel de 15–30 s para redes", "Asesoría de estilo"] }
     ]
   },
   bodas: {
@@ -60,9 +60,9 @@ export const S = {
     ],
     sc: ["Íntima, menos de 50 invitados", "Entre 50 y 150 invitados", "Más de 150 o en destino", "No lo sé todavía"],
     pk: [
-      { n: "Esencial", p: 690, u: "4 horas", items: ["Un fotógrafo", "300 fotos editadas", "Galería online", "Entrega en 3 semanas"] },
-      { n: "Clásica", p: 1290, u: "8 horas", feat: 1, extra: ["4 horas más de cobertura", "Segundo fotógrafo", "200 fotos más (500 en total)", "Sesión de pareja previa"] },
-      { n: "Premium", p: 2190, u: "día completo", extra: ["Video resumen de 3–5 min", "Tomas con dron", "Álbum impreso de 30 páginas", "Entrega prioritaria"] }
+      { n: "Esencial", p: 450, u: "4 horas", items: ["Un fotógrafo", "300 fotos editadas", "Galería online", "Entrega en 3 semanas"] },
+      { n: "Clásica", p: 890, u: "8 horas", feat: 1, extra: ["4 horas más de cobertura", "Segundo fotógrafo", "200 fotos más (500 en total)", "Sesión de pareja previa"] },
+      { n: "Premium", p: 1490, u: "día completo", extra: ["Video resumen de 3–5 min", "Tomas con dron", "Álbum impreso de 30 páginas", "Entrega prioritaria"] }
     ]
   },
   eventos: {
@@ -78,9 +78,9 @@ export const S = {
     ],
     sc: ["Hasta 30 invitados", "De 30 a 100 invitados", "Más de 100 o con video", "No lo sé todavía"],
     pk: [
-      { n: "Express", p: 249, u: "2 horas", items: ["100 fotos editadas", "1 fotógrafo", "Galería online", "Entrega en 5 días"] },
-      { n: "Completo", p: 499, u: "4 horas", feat: 1, extra: ["2 horas más de cobertura", "150 fotos más (250 en total)", "Galería compartida", "Entrega en 48 h"] },
-      { n: "Foto + video", p: 899, u: "6 horas", extra: ["2 horas más de cobertura", "Segundo fotógrafo", "Reel del evento", "Video resumen de 2–3 min"] }
+      { n: "Express", p: 140, u: "2 horas", items: ["100 fotos editadas", "1 fotógrafo", "Galería online", "Entrega en 5 días"] },
+      { n: "Completo", p: 280, u: "4 horas", feat: 1, extra: ["2 horas más de cobertura", "150 fotos más (250 en total)", "Galería compartida", "Entrega en 48 h"] },
+      { n: "Foto + video", p: 550, u: "6 horas", extra: ["2 horas más de cobertura", "Segundo fotógrafo", "Reel del evento", "Video resumen de 2–3 min"] }
     ]
   },
   digital: {
@@ -96,20 +96,20 @@ export const S = {
     ],
     sc: ["Una página para captar clientes", "Un catálogo o tienda para vender", "Un sistema para organizar mi negocio", "No lo sé todavía"],
     pk: [
-      { n: "Landing", p: 490, u: "7 días", items: ["Landing de 1 página a medida", "Diseño adaptado a celular", "Formulario y botón de WhatsApp", "Publicada en tu dominio"] },
-      { n: "Tienda y catálogo", p: 1290, u: "3 semanas", feat: 1, extra: ["Hasta 50 productos", "Carrito y pagos online", "Panel para editar tú mismo", "Buscador y filtros"] },
-      { n: "Sistema a medida", p: 2900, u: "6 semanas", extra: ["CRM de seguimiento de clientes", "Usuarios, roles y reportes", "Recordatorios automáticos", "Capacitación a tu equipo"] }
+      { n: "Landing", p: 220, u: "7 días", items: ["Landing de 1 página a medida", "Diseño adaptado a celular", "Formulario y botón de WhatsApp", "Publicada en línea (dominio y hosting aparte)"] },
+      { n: "Tienda y catálogo", p: 590, u: "3 semanas", feat: 1, extra: ["Hasta 50 productos", "Pedidos por WhatsApp y enlace de pago", "Panel para editar tú mismo", "Buscador y filtros"] },
+      { n: "Sistema a medida", p: 1450, u: "4–6 semanas", extra: ["CRM de seguimiento de clientes", "Usuarios, roles y reportes", "Recordatorios automáticos", "Capacitación a tu equipo", "Alcance final confirmado tras un diagnóstico"] }
     ]
   }
 };
 
 // Extras sugeridos por preocupación: [nombre, precio, último paquete donde aún aplica (0,1,2; 9 = siempre)]
 export const ADD = {
-  empresas: [["Retoque avanzado", 15, 9], ["Coordinación completa", 20, 1], ["Entrega exprés 48 h", 10, 1], ["Lista de tomas", 10, 0]],
-  personas: [null, ["Retoque premium", 10, 9], ["Asesoría de estilo", 10, 1], ["Búsqueda de locación", 10, 9]],
-  bodas: [["Segundo fotógrafo", 250, 0], ["Entrega prioritaria", 150, 1], null, ["Sesión de pareja previa", 120, 0]],
-  eventos: [["Galería compartida", 60, 0], ["Entrega en 48 h", 90, 0], null, ["Reel del evento", 180, 1]],
-  digital: [["Recordatorios automáticos", 150, 1], ["Auditoría de conversión", 120, 9], ["Migración de tus datos", 200, 1], ["Dominio y hosting (1er año)", 60, 9]]
+  empresas: [["Retoque avanzado", 20, 9], ["Coordinación completa", 25, 1], ["Entrega exprés 48 h", 25, 1], ["Lista de tomas", 15, 0]],
+  personas: [null, ["Retoque premium", 15, 9], ["Asesoría de estilo", 15, 1], ["Búsqueda de locación", 15, 9]],
+  bodas: [["Segundo fotógrafo", 180, 0], ["Entrega prioritaria", 95, 1], null, ["Sesión de pareja previa", 90, 0]],
+  eventos: [["Galería compartida", 25, 0], ["Entrega en 48 h", 35, 0], null, ["Reel del evento", 75, 1]],
+  digital: [["Recordatorios automáticos", 95, 1], ["Auditoría de conversión", 65, 9], ["Migración de tus datos", 120, 1], ["Dominio y hosting (1er año)", 60, 9]]
 };
 // Paquete recomendado cuando el cliente responde "No lo sé todavía", según su preocupación
 export const PT = { empresas: [0, 1, 1, 1], personas: [0, 1, 1, 0], bodas: [2, 1, 1, 1], eventos: [1, 1, 0, 2], digital: [2, 0, 2, 0] };
