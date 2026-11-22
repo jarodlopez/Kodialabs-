@@ -2,6 +2,8 @@
 export const WA = "https://wa.me/0000000000";
 // Opcional: URL que recibe cada cotización completada (Zapier, Make, Google Apps Script, etc.)
 export const LEAD_URL = "";
+// Google Analytics 4: pega aquí tu ID de medición (empieza con G-). Vacío = sin analítica.
+export const GA_ID = "G-R4MDJBR5F5";
 export const WHEN = ["En menos de 2 semanas", "En 1 a 2 meses", "Más adelante", "Solo estoy cotizando"];
 // Bodas y eventos ocultos por ahora (sin portafolio, trabajas solo). Para reactivarlos: ["empresas", "personas", "bodas", "eventos", "digital"]
 export const ORDER = ["empresas", "personas", "digital"];
