@@ -4,7 +4,7 @@ import "@fontsource/inter-tight/500.css";
 import "@fontsource/outfit/500.css";
 import "@fontsource/outfit/600.css";
 import "@fontsource/outfit/700.css";
-import { ORDER, S, wa } from "../data.js";
+import { ORDER, S, wa, GA_ID } from "../data.js";
 const { title, desc = "Fotografía, video y tecnología en Managua para personas y negocios.", seg = "", sticky = true } = Astro.props;
 const cta = "/diagnostico" + (seg ? "/" + seg : "");
 const msg = "Hola kodialabs, quiero info" + (seg && S[seg] ? " de " + S[seg].label.toLowerCase() : "");
@@ -21,6 +21,8 @@ const msg = "Hola kodialabs, quiero info" + (seg && S[seg] ? " de " + S[seg].lab
   <meta property="og:title" content={title} />
   <meta property="og:description" content={desc} />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  {GA_ID && <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>}
+  {GA_ID && <script is:inline set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","${GA_ID}");`}></script>}
 </head>
 <body class={sticky ? "hasst" : ""}>
   <div class="bg" aria-hidden="true">
