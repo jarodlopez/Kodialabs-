@@ -23,6 +23,7 @@ const msg = "Hola kodialabs, quiero info" + (seg && S[seg] ? " de " + S[seg].lab
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   {GA_ID && <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>}
   {GA_ID && <script is:inline set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","${GA_ID}");`}></script>}
+  <script is:inline>/*rv*/document.documentElement.classList.add("js");setTimeout(function(){if(!window.__rv)document.documentElement.classList.remove("js")},4000);</script>
 </head>
 <body class={sticky ? "hasst" : ""}>
   <div class="bg" aria-hidden="true">
@@ -43,6 +44,7 @@ const msg = "Hola kodialabs, quiero info" + (seg && S[seg] ? " de " + S[seg].lab
   {sticky && (
     <div class="sticky"><span>¿No sabes cuál elegir?</span><a class="btn" href={cta}>Encuentra tu paquete</a></div>
   )}
+  <script is:inline>/*rv-init*/(function(){var sel=".tiles>*,.cards>*,.steps>li,.pill>div,.band,.gallery>img,.story>div,details,.final h2,.final p,.final .cta-row,section>.wrap:not(.qwrap)>h2";var els=[].slice.call(document.querySelectorAll(sel));function show(e){e.classList.add("in")}try{if(!("IntersectionObserver" in window)||matchMedia("(prefers-reduced-motion:reduce)").matches){els.forEach(show);window.__rv=1;return}var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){show(x.target);io.unobserve(x.target)}})},{threshold:.12,rootMargin:"0px 0px -6% 0px"});els.forEach(function(e){var i=[].indexOf.call(e.parentNode.children,e);e.style.setProperty("--d",Math.min(i,4)*.08+"s");io.observe(e)});window.__rv=1}catch(_){els.forEach(show);window.__rv=1}})();</script>
 </body>
 </html>
 
@@ -155,10 +157,13 @@ footer.site .sp{width:12px;height:12px;margin:0;vertical-align:baseline}
 footer.site a:hover{color:var(--lime)}
 .hero.has-photo{padding:120px 0 72px}
 .hero.has-photo .lead{color:#D5D5D8}
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;z-index:0;-webkit-mask:linear-gradient(180deg,#000 55%,transparent);mask:linear-gradient(180deg,#000 55%,transparent)}
-.tile .tile-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.9;transition:transform .6s}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;z-index:0;-webkit-mask:linear-gradient(180deg,transparent 0,#000 24%,#000 55%,transparent 100%);mask:linear-gradient(180deg,transparent 0,#000 24%,#000 55%,transparent 100%)}
+.hero.has-photo h1,.hero.has-photo .lead{text-shadow:0 2px 28px rgba(0,0,0,.7)}
+.tile .tile-img{position:absolute;inset:auto 0 0 auto;width:74%;height:auto;max-height:100%;object-fit:contain;object-position:right bottom;z-index:0;-webkit-mask:radial-gradient(closest-side,#000 66%,transparent 100%);mask:radial-gradient(closest-side,#000 66%,transparent 100%);transition:transform .6s}
 .tile:hover .tile-img{transform:scale(1.05)}
-.tile.has-img::before{inset:0;width:auto;height:auto;border-radius:0;filter:none;background:linear-gradient(180deg,rgba(5,5,5,.55) 0%,rgba(5,5,5,.15) 40%,rgba(5,5,5,.9) 100%);z-index:1}
+.tile.has-img{min-height:250px}
+.tile.has-img::before{inset:0;width:auto;height:auto;border-radius:0;filter:none;background:linear-gradient(90deg,rgba(5,5,5,.6) 0%,rgba(5,5,5,0) 62%);z-index:1}
+.tile.has-img::after{display:none}
 .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:28px}
 .gallery img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:20px;border:1px solid var(--line);transition:transform .4s,border-color .2s}
 .gallery img:hover{transform:translateY(-3px);border-color:var(--lime)}
@@ -168,4 +173,29 @@ footer.site a:hover{color:var(--lime)}
 @media (max-width:900px){.cards{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.story{grid-template-columns:1fr;gap:28px}}
 @media (max-width:600px){.tiles{grid-template-columns:1fr}.tile{min-height:210px}.steps{grid-template-columns:1fr}section{padding:56px 0}}
 @media (prefers-reduced-motion:no-preference){.pulse{animation:b 7s ease-in-out infinite alternate}@keyframes b{to{transform:scale(1.15);opacity:.8}}}
+
+/* ===== Animaciones (solo transform y opacidad; respetan "reducir movimiento") ===== */
+@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+@keyframes twinkle{to{transform:scale(1.1) rotate(10deg)}}
+@keyframes slideup{from{transform:translateY(110%)}}
+@keyframes par{to{transform:translateY(70px) scale(1.07)}}
+@keyframes prog{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:no-preference){
+  html.js :is(.tiles>*,.cards>*,.steps>li,.pill>div,.band,.gallery>img,.story>div,details,.final h2,.final p,.final .cta-row,section>.wrap:not(.qwrap)>h2):not(.in){opacity:0}
+  :is(.tiles>*,.cards>*,.steps>li,.pill>div,.band,.gallery>img,.story>div,details,.final h2,.final p,.final .cta-row,section>.wrap:not(.qwrap)>h2).in{animation:rise .7s cubic-bezier(.2,.7,.2,1) var(--d,0s) backwards}
+  .hero:not(.qwrap) .wrap:not(.qwrap)>*{animation:rise .8s cubic-bezier(.2,.7,.2,1) var(--d,0s) backwards}
+  .hero .wrap:not(.qwrap)>:nth-child(2){--d:.1s}.hero .wrap:not(.qwrap)>:nth-child(3){--d:.2s}.hero .wrap:not(.qwrap)>:nth-child(4){--d:.3s}
+  .qwrap>*{animation:rise .4s ease-out backwards}
+  .hero.home::after{animation:twinkle 6s ease-in-out infinite alternate}
+  .sticky{animation:slideup .5s cubic-bezier(.2,.7,.2,1) .8s backwards}
+  .btn:active{transform:scale(.97)}
+}
+@supports (animation-timeline:scroll()){
+  @media (prefers-reduced-motion:no-preference){
+    .hero-img{animation:par 1s linear both;animation-timeline:scroll(root);animation-range:0 100vh}
+    html::before{content:"";position:fixed;left:0;top:0;width:100%;height:2px;background:var(--lime);transform-origin:0 50%;z-index:60;pointer-events:none;animation:prog 1s linear both;animation-timeline:scroll(root)}
+  }
+}
+/* Celulares de gama baja: menos desenfoque y sin pulso infinito */
+@media (max-width:700px){.glow{filter:blur(55px)}.pulse{animation:none!important}}
 </style>
