@@ -44,7 +44,7 @@ const msg = "Hola kodialabs, quiero info" + (seg && S[seg] ? " de " + S[seg].lab
   {sticky && (
     <div class="sticky"><span>¿No sabes cuál elegir?</span><a class="btn" href={cta}>Encuentra tu paquete</a></div>
   )}
-  <script is:inline>/*rv-init*/(function(){var sel=".tiles>*,.cards>*,.steps>li,.pill>div,.band,.gallery>img,.story>div,details,.final h2,.final p,.final .cta-row,section>.wrap:not(.qwrap)>h2";var els=[].slice.call(document.querySelectorAll(sel));function show(e){e.classList.add("in")}try{if(!("IntersectionObserver" in window)||matchMedia("(prefers-reduced-motion:reduce)").matches){els.forEach(show);window.__rv=1;return}var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){show(x.target);io.unobserve(x.target)}})},{threshold:.12,rootMargin:"0px 0px -6% 0px"});els.forEach(function(e){var i=[].indexOf.call(e.parentNode.children,e);e.style.setProperty("--d",Math.min(i,4)*.08+"s");io.observe(e)});window.__rv=1}catch(_){els.forEach(show);window.__rv=1}})();</script>
+  <script is:inline>/*rv-init*/(function(){var sel=".tiles>*,.cards>*,.steps>li,.band,.gallery>img,.story>div,details,.final h2,.final p,.final .cta-row,section>.wrap:not(.qwrap)>h2";var els=[].slice.call(document.querySelectorAll(sel));function show(e){e.classList.add("in")}try{if(!("IntersectionObserver" in window)||matchMedia("(prefers-reduced-motion:reduce)").matches){els.forEach(show);window.__rv=1;return}var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){show(x.target);io.unobserve(x.target)}})},{threshold:.12,rootMargin:"0px 0px -6% 0px"});els.forEach(function(e){var i=[].indexOf.call(e.parentNode.children,e);e.style.setProperty("--d",Math.min(i,4)*.08+"s");io.observe(e)});window.__rv=1}catch(_){els.forEach(show);window.__rv=1}})();</script>
 </body>
 </html>
 
@@ -56,6 +56,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.5 "Inter Tig
 .bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 .final .glow{left:50%!important;translate:-50% 0;transform:none!important}
 body.hasst{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+main{overflow-x:clip}
 h1,h2,h3,p{margin:0}
 h1,h2{font-family:var(--display);font-weight:700;letter-spacing:-.045em;line-height:.98}
 h1{font-size:clamp(2.9rem,11vw,7.5rem)}
@@ -176,19 +177,33 @@ footer.site a:hover{color:var(--lime)}
 
 /* ===== Animaciones (solo transform y opacidad; respetan "reducir movimiento") ===== */
 @keyframes rise{from{opacity:0;transform:translateY(24px)}}
+@keyframes fromL{from{opacity:0;transform:translateX(-40px)}}
+@keyframes fromR{from{opacity:0;transform:translateX(40px)}}
 @keyframes twinkle{to{transform:scale(1.1) rotate(10deg)}}
 @keyframes slideup{from{transform:translateY(110%)}}
 @keyframes par{to{transform:translateY(70px) scale(1.07)}}
 @keyframes prog{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @media (prefers-reduced-motion:no-preference){
-  html.js :is(.tiles>*,.cards>*,.steps>li,.pill>div,.band,.gallery>img,.story>div,details,.final h2,.final p,.final .cta-row,section>.wrap:not(.qwrap)>h2):not(.in){opacity:0}
-  :is(.tiles>*,.cards>*,.steps>li,.pill>div,.band,.gallery>img,.story>div,details,.final h2,.final p,.final .cta-row,section>.wrap:not(.qwrap)>h2).in{animation:rise .7s cubic-bezier(.2,.7,.2,1) var(--d,0s) backwards}
+  html.js :is(.tiles>*,.cards>*,.steps>li,.band,.gallery>img,.story>div,details,.final h2,.final p,.final .cta-row,section>.wrap:not(.qwrap)>h2):not(.in){opacity:0}
+  :is(.tiles>*,.cards>*,.steps>li,.band,.gallery>img,.story>div,details,.final h2,.final p,.final .cta-row,section>.wrap:not(.qwrap)>h2).in{animation:rise .7s cubic-bezier(.2,.7,.2,1) var(--d,0s) backwards}
   .hero:not(.qwrap) .wrap:not(.qwrap)>*{animation:rise .8s cubic-bezier(.2,.7,.2,1) var(--d,0s) backwards}
   .hero .wrap:not(.qwrap)>:nth-child(2){--d:.1s}.hero .wrap:not(.qwrap)>:nth-child(3){--d:.2s}.hero .wrap:not(.qwrap)>:nth-child(4){--d:.3s}
   .qwrap>*{animation:rise .4s ease-out backwards}
   .hero.home::after{animation:twinkle 6s ease-in-out infinite alternate}
   .sticky{animation:slideup .5s cubic-bezier(.2,.7,.2,1) .8s backwards}
   .btn:active{transform:scale(.97)}
+  /* Dirección horizontal solo donde el diseño es horizontal; en una sola columna sube normal */
+  html body .story>div:first-child.in{animation-name:fromL}
+  html body .story>div:last-child.in{animation-name:fromR}
+}
+@media (prefers-reduced-motion:no-preference) and (min-width:601px){
+  html body .tiles>:nth-child(odd).in{animation-name:fromL}
+  html body .tiles>:nth-child(even).in{animation-name:fromR}
+  html body .tiles>:last-child:nth-child(odd).in{animation-name:rise}
+}
+@media (prefers-reduced-motion:no-preference) and (min-width:900px){
+  html body .cards>:first-child.in{animation-name:fromL}
+  html body .cards>:last-child.in{animation-name:fromR}
 }
 @supports (animation-timeline:scroll()){
   @media (prefers-reduced-motion:no-preference){
