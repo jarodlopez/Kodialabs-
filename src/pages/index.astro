@@ -40,7 +40,7 @@ const trabajos = galeria();
           return (
             <a class={`tile ${S[k].tile}${img ? " has-img" : ""}`} href={`/${k}`}>
               {img && <img class="tile-img" src={img} alt="" loading="lazy" decoding="async" />}
-              <div><div class="thead"><Ico name={ICON[k] || "layers"} size="sm" /><h3>{S[k].label}</h3></div><p>{S[k].short}</p></div>
+              <div><div class="thead" style="display:flex;align-items:center;gap:12px;margin-bottom:6px"><Ico name={ICON[k] || "layers"} size="sm" style="--s:38px;margin:0" /><h3>{S[k].label}</h3></div><p>{S[k].short}</p></div>
               <div class="go"><span>Desde ${S[k].pk[0].p}</span><span aria-hidden="true">→</span></div>
             </a>
           );
