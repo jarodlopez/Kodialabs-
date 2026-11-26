@@ -1,0 +1,112 @@
+---
+import Base from "../layouts/Base.astro";
+import { ORDER, S, wa } from "../data.js";
+import { foto, galeria } from "../fotos.js";
+import Ico from "../components/Ico.astro";
+const ICON = { empresas: "megaphone", personas: "camera", digital: "code", bodas: "video", eventos: "video" };
+const hero = foto("hero");
+const trabajos = galeria();
+---
+<Base title="kodialabs | Fotografía, video y tecnología">
+  <section class={`hero home${hero ? " has-photo" : ""}`}>
+    {hero && <img class="hero-img" src={hero} alt="" fetchpriority="high" />}
+    <div class="wrap">
+      <h1>Guardamos<br />lo que importa<i class="sp" aria-hidden="true"></i></h1>
+      <p class="lead" style="margin-top:24px">kodialabs es un laboratorio de fotografía, video y tecnología en Managua para personas y negocios.</p>
+      <div class="cta-row">
+        <a class="btn" href="/diagnostico">Encuentra tu paquete ideal</a>
+        <a class="btn line" href="#servicios">Ver servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" style="padding-top:20px">
+    <div class="wrap">
+      <div class="orb" aria-hidden="true">
+        <div class="glow lime" style="width:70%;height:60%;left:15%;top:24%;opacity:.5"></div>
+        <i class="ring"></i><i class="ring b"></i>
+        <Ico name="star" style="--x:50%;--y:52%;--w:30%;--r:-4deg;--t:7s" />
+        <Ico name="camera" style="--x:22%;--y:22%;--w:20%;--r:-8deg;--t:6s;--dl:-1s" />
+        <Ico name="video" style="--x:78%;--y:24%;--w:19%;--r:6deg;--t:6.5s;--dl:-3s" />
+        <Ico name="chart" style="--x:9%;--y:58%;--w:14%;--r:-6deg;--t:5.5s;--dl:-2s" />
+        <Ico name="layers" style="--x:92%;--y:60%;--w:14%;--r:8deg;--t:7s;--dl:-4s" />
+        <Ico name="cart" style="--x:25%;--y:86%;--w:18%;--r:5deg;--t:6.2s;--dl:-.5s" />
+        <Ico name="megaphone" style="--x:75%;--y:88%;--w:16%;--r:-7deg;--t:5.8s;--dl:-2.5s" />
+      </div>
+      <h2>¿Qué necesitas hoy?</h2>
+      <div class="tiles">
+        {ORDER.map((k) => {
+          const img = foto(k);
+          return (
+            <a class={`tile ${S[k].tile}${img ? " has-img" : ""}`} href={`/${k}`}>
+              {img && <img class="tile-img" src={img} alt="" loading="lazy" decoding="async" />}
+              <div><div class="thead"><Ico name={ICON[k] || "layers"} size="sm" /><h3>{S[k].label}</h3></div><p>{S[k].short}</p></div>
+              <div class="go"><span>Desde ${S[k].pk[0].p}</span><span aria-hidden="true">→</span></div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  {trabajos.length > 0 && (
+    <section style="padding-top:0">
+      <div class="wrap">
+        <h2>Trabajo reciente</h2>
+        <div class="gallery">
+          {trabajos.map((f) => <img src={f} alt="Trabajo de kodialabs" loading="lazy" decoding="async" />)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section>
+    <div class="wrap story">
+      <div>
+        <h2>Nuestra historia</h2>
+        <p>kodialabs nació en Managua, fundado por Jarod López. Tras más de cinco años en ventas digitales y e-commerce, vio lo mismo una y otra vez: negocios con buenos productos que pierden clientes por fotos que no los muestran bien y por no tener un lugar propio donde vender.</p>
+        <p>Por eso unió dos cosas: fotografía y video bien dirigidos, y tecnología (landing pages, tiendas, catálogos y CRM) para que esas imágenes trabajen y ningún cliente se quede sin respuesta. Aquí hablas directo con quien toma las fotos y construye tu sitio: sin intermediarios, con precio cerrado y fecha de entrega por escrito.</p>
+      </div>
+      <div class="pill">
+        <div><Ico name="compass" size="sm" /><p><b>Te guiamos</b><span>No necesitas saber posar ni qué pedir.</span></p></div>
+        <div><Ico name="calendar" size="sm" /><p><b>Fecha de entrega acordada</b><span>Lo dejamos por escrito antes de empezar.</span></p></div>
+        <div><Ico name="tag" size="sm" /><p><b>Precio cerrado</b><span>Sabes cuánto pagas antes de reservar.</span></p></div>
+        <div><Ico name="chat" size="sm" /><p><b>Trato directo</b><span>Hablas con quien hace tu sesión o tu sitio.</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="band">
+        <div><h2>¿No sabes cuál elegir?</h2><p>Responde 4 preguntas y te armamos la oferta que encaja con tu situación. Toma menos de un minuto.</p></div>
+        <a class="btn" href="/diagnostico">Empezar ahora</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Preguntas frecuentes</h2>
+      <div style="margin-top:28px">
+        <details><summary>¿Cómo reservo y cómo pago?</summary><p>Elige tu paquete o haz el diagnóstico, te escribimos por WhatsApp para confirmar fecha y reservas con un anticipo del 50%. El resto se paga el día de la sesión. Puedes pagar en dólares o en córdobas al tipo de cambio oficial del día.</p></details>
+        <details><summary>¿Cuánto tardan en entregar?</summary><p>Depende del paquete (los de entrada se entregan en 3 días) y lo acordamos por escrito antes de empezar.</p></details>
+        <details><summary>¿Y si no me convencen las fotos?</summary><p>Incluimos una ronda de ajustes de edición para que quedes conforme.</p></details>
+        <details><summary>¿Puedo cambiar de paquete después?</summary><p>Sí, puedes subir de paquete hasta antes de la sesión pagando solo la diferencia.</p></details>
+        <details><summary>¿Dónde trabajan?</summary><p>En Managua. Si necesitas la sesión fuera de la ciudad, cotizamos los viáticos aparte.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="glow lime pulse" style="width:700px;height:420px;left:50%;bottom:-250px;transform:translateX(-50%);opacity:.7"></div>
+    <div class="wrap">
+      <h2>Cuéntanos qué necesitas</h2>
+      <p>Te respondemos en menos de 24 horas con una oferta pensada para ti.</p>
+      <div class="cta-row">
+        <a class="btn" href="/diagnostico">Encuentra tu paquete</a>
+        <a class="btn line" href={wa("Hola kodialabs, quiero info")}>Escribir por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</Base>
