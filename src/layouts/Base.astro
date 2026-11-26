@@ -252,4 +252,26 @@ body.hasst .wafab{bottom:calc(96px + env(safe-area-inset-bottom,0px))}
   .wabub.show{animation:pop .45s cubic-bezier(.2,.8,.2,1) backwards}
   .wabtn.nudge::before{animation:ring 1.2s ease-out 3}
 }
+
+/* ===== Íconos de vidrio (chips): cuadrado oscuro, borde brillante y filo lima ===== */
+.ico{--s:52px;position:relative;flex:none;display:inline-grid;place-items:center;width:var(--s);height:var(--s);border-radius:30%;color:var(--ink);font-style:normal;background:linear-gradient(155deg,rgba(255,255,255,.22) 0%,rgba(255,255,255,.05) 38%,rgba(0,0,0,.35) 100%),#0a0b09;border:1px solid rgba(255,255,255,.17);box-shadow:inset 0 1px 0 rgba(255,255,255,.38),inset 0 -5px 7px -3px rgba(199,253,28,.85),0 12px 26px -10px rgba(199,253,28,.5),0 2px 6px rgba(0,0,0,.6);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.ico::after{content:"";position:absolute;left:15%;right:15%;bottom:-1px;height:2px;border-radius:2px;background:var(--lime);filter:blur(1px);opacity:.9}
+.ico svg{width:50%;height:50%;display:block;overflow:visible}
+.ico.spark{color:var(--lime)}
+.ico.sm{--s:40px}.ico.lg{--s:68px}
+.tile .ico{margin-bottom:20px}
+.tile:hover .ico{transform:translateY(-3px) rotate(-6deg);box-shadow:inset 0 1px 0 rgba(255,255,255,.38),inset 0 -5px 7px -3px rgba(199,253,28,1),0 16px 34px -8px rgba(199,253,28,.7),0 2px 6px rgba(0,0,0,.6)}
+.hero .wrap>.ico{display:grid;margin-bottom:22px}
+.pill div{display:flex;align-items:center;gap:16px}
+.pill p{min-width:0;margin:0;color:var(--ink)}
+
+/* Escena de íconos flotantes del inicio */
+.hero.home::before,.hero.home::after{display:none}
+.orb{position:relative;width:min(100%,600px);aspect-ratio:6/5;margin:44px auto 0;pointer-events:none}
+.orb .ring{position:absolute;inset:20% 3% 14%;border-radius:50%;border:1px solid rgba(199,253,28,.55);box-shadow:0 0 22px rgba(199,253,28,.28),inset 0 0 28px rgba(199,253,28,.1);rotate:-6deg}
+.orb .ring.b{inset:27% 10% 21%;border-color:rgba(199,253,28,.18);box-shadow:none;rotate:4deg}
+.orb .ico{position:absolute;left:var(--x);top:var(--y);width:var(--w);height:auto;aspect-ratio:1;translate:-50% -50%;transform:rotate(var(--r,0deg));z-index:1}
+@keyframes bob{from{transform:translateY(0) rotate(var(--r,0deg))}to{transform:translateY(-9px) rotate(calc(var(--r,0deg) + 3deg))}}
+@media (prefers-reduced-motion:no-preference){.orb .ico{animation:bob var(--t,6s) ease-in-out var(--dl,0s) infinite alternate}}
+@media (max-width:700px){.orb{margin-top:36px}}
 </style>
