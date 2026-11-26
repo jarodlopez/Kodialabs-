@@ -2,6 +2,8 @@
 import Base from "../layouts/Base.astro";
 import { ORDER, S, wa } from "../data.js";
 import { foto } from "../fotos.js";
+import Ico from "../components/Ico.astro";
+const ICON = { empresas: "megaphone", personas: "camera", digital: "code", bodas: "video", eventos: "video" };
 
 export function getStaticPaths() {
   return ORDER.map((k) => ({ params: { seg: k } }));
@@ -14,6 +16,7 @@ const img = foto(seg);
   <section class="hero">
     <div class="wrap">
       <a class="back" href="/">← Todos los servicios</a>
+      <Ico name={ICON[seg] || "layers"} size="lg" />
       <h1>{s.h}</h1>
       <p class="lead" style="margin-top:24px">{s.lead}</p>
       <div class="cta-row"><a class="btn" href={`/diagnostico/${seg}`}>Encuentra tu paquete ideal</a></div>
